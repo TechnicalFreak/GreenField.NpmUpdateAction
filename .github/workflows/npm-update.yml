@@ -2,6 +2,9 @@ name: Node.js NPM Upgrade
 
 on: workflow_dispatch
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs: 
   npm_upgrade:
     runs-on: ubuntu-latest
@@ -36,6 +39,7 @@ jobs:
         git add .
         git commit -m "chore: Upgrade NPM packages"
         git push
+      
 
     - name: Create Pull Request
       if: steps.git_status.outputs.changed == 'true'
