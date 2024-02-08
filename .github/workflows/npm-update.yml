@@ -22,7 +22,14 @@ jobs:
     - name: Upgrade NPM packages
       run: npm update
 
+    - name: Check for changes
+      id: git_status
+      run: |
+        git diff --quiet || echo "::set-output name=changed::true"
+      continue-on-error: true
+
     - name: Commit changes
+      if: steps.git_status.outputs.changed == 'true'
       run: |
         git config --global user.email "github-actions@example.com"
         git config --global user.name "GitHub Actions"
@@ -31,6 +38,7 @@ jobs:
         git push
 
     - name: Create Pull Request
+      if: steps.git_status.outputs.changed == 'true'
       uses: peter-evans/create-pull-request@v3
       with:
         title: 'chore: Upgrade NPM packages'
