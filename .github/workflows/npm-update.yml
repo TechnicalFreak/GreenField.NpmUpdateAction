@@ -1,14 +1,13 @@
 name: Node.js NPM Upgrade
 
-on:
-  workflow_dispatch
-defaults:
-  run:
-    working-directory: src
- 
-jobs:
+on: workflow_dispatch
+
+jobs: 
   npm_upgrade:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
 
     steps:
     - name: Checkout code
