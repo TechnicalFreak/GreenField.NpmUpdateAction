@@ -3,8 +3,8 @@ name: Node.js NPM Upgrade
 on:
   workflow_dispatch
 defaults:
-  runs:
-    working-directory: ./src
+  run:
+    working-directory: src
  
 jobs:
   npm_upgrade:
