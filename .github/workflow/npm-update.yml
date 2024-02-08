@@ -1,0 +1,40 @@
+name: Node.js NPM Upgrade
+
+on:
+  workflow_dispatch
+defaults:
+  runs:
+    working-directory: ./src
+ 
+jobs:
+  npm_upgrade:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Upgrade NPM packages
+      run: npm update
+
+    - name: Commit changes
+      run: |
+        git config --global user.email "github-actions@example.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git commit -m "chore: Upgrade NPM packages"
+        git push
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: 'chore: Upgrade NPM packages'
+        body: |
+          This PR automatically upgrades NPM packages.
+        labels: 'auto-upgrade'
