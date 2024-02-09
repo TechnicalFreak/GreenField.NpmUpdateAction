@@ -49,9 +49,8 @@ jobs:
 
     - name: Create Pull Request
       if: steps.git_status.outputs.changed == 'true'
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v6
       with:
-        token: $GITHUB_TOKEN
         title: 'Upgrade NPM packages'
         branch: workflow/npm-install-$GITHUB_RUN_NUMBER
         base: master
