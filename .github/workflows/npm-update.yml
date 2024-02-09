@@ -38,7 +38,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add .
         git commit -m "chore: Upgrade NPM packages"
-        git remote set-url --push origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/y$GITHUB_REPO
+        git remote set-url --push origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
         git push
       
 
