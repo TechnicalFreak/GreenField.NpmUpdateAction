@@ -17,6 +17,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Checkout New-Branch
+      run: git checkout -B workflow/npm-install-@GITHUB_RUN_NUMBER
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
 
@@ -48,7 +51,8 @@ jobs:
       if: steps.git_status.outputs.changed == 'true'
       uses: peter-evans/create-pull-request@v3
       with:
-        title: 'chore: Upgrade NPM packages'
-        body: |
-          This PR automatically upgrades NPM packages.
+        title: 'Upgrade NPM packages'
+        branch: workflow/npm-install-@GITHUB_RUN_NUMBER
+        base: master
+        body: "Diese Änderungen wurden automatisch erstellt."
         labels: 'auto-upgrade'
