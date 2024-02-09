@@ -4,6 +4,7 @@ on: workflow_dispatch
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PTA: ${{ secrets.PTA }}
 
 jobs: 
   npm_upgrade:
@@ -39,7 +40,7 @@ jobs:
         git add .
         git commit -m "chore: Upgrade NPM packages"
         git remote -v
-        git push https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+        git push https://$PTA@github.com/$GITHUB_REPOSITORY.git
       
 
     - name: Create Pull Request
