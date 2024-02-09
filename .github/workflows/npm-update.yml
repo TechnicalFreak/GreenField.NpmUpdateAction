@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  PTA: ${{ secrets.PTA }}
+  PAT: ${{ secrets.PAT }}
 
 jobs: 
   npm_upgrade:
@@ -17,7 +17,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        token: $PTA
+        token: $PAT
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
