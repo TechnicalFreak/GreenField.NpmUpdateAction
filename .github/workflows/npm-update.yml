@@ -45,14 +45,18 @@ jobs:
         git remote -v
         git remote set-url origin https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
         git push --set-upstream origin workflow/npm-install-$GITHUB_RUN_NUMBER
-      
 
-    - name: Create Pull Request
-      if: steps.git_status.outputs.changed == 'true'
-      uses: peter-evans/create-pull-request@v6
-      with:
-        title: 'Upgrade NPM packages'
-        branch: 'workflow/npm-install-$GITHUB_RUN_NUMBER'
-        base: master
-        body: "Diese Änderungen wurden automatisch erstellt."
-        labels: 'auto-upgrade'
+
+    # Installiere die GitHub CLI
+    - name: Installiere GitHub CLI
+      run: |
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+        sudo apt-add-repository https://cli.github.com/packages
+        sudo apt update
+        sudo apt install gh
+
+    # Erstelle einen Pull Request
+    - name: Erstelle Pull Request
+      run: |
+        gh pr create --base master --head workflow/npm-install-$GITHUB_RUN_NUMBER --title "Mein Pull Request" --body "Hier ist mein Pull Request."
+
