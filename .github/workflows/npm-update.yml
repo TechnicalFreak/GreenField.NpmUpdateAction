@@ -52,7 +52,7 @@ jobs:
       uses: peter-evans/create-pull-request@v6
       with:
         title: 'Upgrade NPM packages'
-        branch: "workflow/npm-install-$GITHUB_RUN_NUMBER"
+        branch: "workflow/npm-install-36"
         base: master
         body: "Diese Änderungen wurden automatisch erstellt."
         labels: 'auto-upgrade'
