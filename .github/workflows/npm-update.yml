@@ -45,13 +45,10 @@ jobs:
         git remote -v
         git remote set-url origin https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
         git push --set-upstream origin workflow/npm-install-$GITHUB_RUN_NUMBER
-      
 
-    - name: Create Pull Request
-      if: steps.git_status.outputs.changed == 'true'
-      uses: peter-evans/create-pull-request@v6
-      with:
-        title: 'Upgrade NPM packages'
-        branch: master
-        body: "Diese Änderungen wurden automatisch erstellt."
-        labels: 'auto-upgrade'
+
+    - name: create pull request
+      run: gh pr create -B master -H workflow/npm-install-$GITHUB_RUN_NUMBER --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
