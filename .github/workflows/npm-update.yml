@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  PAT: ${{ secrets.PAT }}
 
 jobs: 
   npm_upgrade:
