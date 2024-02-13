@@ -2,7 +2,7 @@ name: Node.js NPM Upgrade
 
 on: 
   schedule:
-    - cron: '27 15 * * 1'
+    - cron: '28 15 * * 2'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
