@@ -1,6 +1,8 @@
 name: Node.js NPM Upgrade
 
-on: workflow_dispatch
+on: 
+  schedule:
+    - cron: '27 15 * * 1'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
